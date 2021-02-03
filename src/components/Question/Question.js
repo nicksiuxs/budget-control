@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import Error from '../Error/Error';
 
 const Question = () => {
 
     //Set the state of the quantity
     const [quantity, saveQuantity] = useState(0);
+    // State error
+    const [error, saveError] = useState(false);
 
     // Function that read the value of the budget type by the user
     const setBudget = e => {
@@ -14,13 +17,18 @@ const Question = () => {
     const addBudget = e => {
         e.preventDefault();
         // Validations
-        // e.target.value
+        if (quantity <= 0 || isNaN(quantity)) {
+            saveError(true);
+            return;
+        }
+        saveError(false);
     }
     return (
         <div>
             <h2>Ingresa tu presupuesto</h2>
+            {error ? <Error message="El presupuesto es incorrecto" /> : null}
             <form
-                onSubmit={ }
+                onSubmit={addBudget}
             >
                 <input
                     type="number"
