@@ -1,5 +1,6 @@
 import React , {useState}from 'react';
-import Question from './components/Question/Question.js';
+import Question from './components/Question/Question';
+import Form from './components/Forms/Forms';
 
 function App() {
 
@@ -17,6 +18,14 @@ function App() {
             saveBudget = {saveBudget}
             saveRemaining = {saveRemaining}
           />
+          <div className="row">
+              <div className="one-half column">
+                  <Form/>
+              </div>
+              <div className="one-half column">
+                  2
+              </div>
+          </div>
         </div>
       </header>
     </div>
