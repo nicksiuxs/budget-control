@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from '../Error/Error';
 
-const Question = ({saveBudget,saveRemaining}) => {
+const Question = ({ saveBudget, saveRemaining, updateQuestion }) => {
 
     //Set the state of the quantity
     const [quantity, saveQuantity] = useState(0);
@@ -23,6 +23,8 @@ const Question = ({saveBudget,saveRemaining}) => {
         }
         saveError(false);
         saveBudget(quantity);
+        saveRemaining(quantity);
+        updateQuestion(false);
     }
     return (
         <div>
