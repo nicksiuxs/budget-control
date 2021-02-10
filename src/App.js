@@ -11,24 +11,27 @@ function App() {
   const [remaining, saveRemaining] = useState(0);
   const [showquestion, updateQuestion] = useState(true);
   const [spendings, saveSpendings] = useState([]);
-  const [spending, saveSpending]= useState({});
-  const [createspending, saveCreatespending]=useState(false);
+  const [spending, saveSpending] = useState({});
+  const [createspending, saveCreatespending] = useState(false);
 
   // UseEffect thats updates the remaining
   useEffect(() => {
-    if(createspending){
+    if (createspending) {
+
       // agrega el nuevo presupuesto
       saveSpendings([
         ...spendings,
         spending
-      ])  
-    }
-    // resta del nuevo presupuesto
-    const budgetRemaining = remaining - spending.quantity;
+      ]);
 
-    saveRemaining(budgetRemaining);
-    saveCreatespending(false);
-  }, [createspending, remaining, spending, spendings])
+      // resta del presupuesto actual
+      const budgetRemaining = remaining - spending.quantity;
+      saveRemaining(budgetRemaining);
+
+      // Resetear a false
+      saveCreatespending(false);
+    }
+  }, [spending, createspending, spendings, remaining]);
 
   return (
     <div className="container">
@@ -44,17 +47,17 @@ function App() {
             : (
               <div className="row">
                 <div className="one-half column">
-                  <Form saveSpending={saveSpending} 
+                  <Form saveSpending={saveSpending}
                     saveCreatespending={saveCreatespending}
                   />
                 </div>
                 <div className="one-half column">
                   <List
-                    spendings = {spendings}
+                    spendings={spendings}
                   />
                   <BudgetControl
-                    budget = {budget}
-                    remaining = {remaining}
+                    budget={budget}
+                    remaining={remaining}
                   />
                 </div>
               </div>
