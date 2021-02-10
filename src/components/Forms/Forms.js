@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Error from '../Error/Error';
 import shortid from 'shortid';
 
-const Forms = ({saveNewSpending}) => {
+const Forms = ({saveSpending, saveCreatespending}) => {
 
     const [name, saveName] = useState('');
     const [quantity, saveQuantity] = useState(0);
@@ -25,8 +25,9 @@ const Forms = ({saveNewSpending}) => {
         }
 
         // sent the expense to principal component
-        saveNewSpending(spending);
-
+        saveSpending(spending);
+        saveCreatespending(true);
+        
         // reset form
         saveName('');
         saveQuantity(0);
